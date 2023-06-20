@@ -8,7 +8,9 @@ function LayoutPage({ children }) {
             <Container  maxW="1200px">
             <Header/>
                 <Box
-                    borderRadius="20px" 
+                    borderRadius="20px"
+                    backgroundColor="#F5F5F5" 
+                    padding="30px"
                 >
                     {children}
                 </Box>

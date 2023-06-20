@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 function Header() {
     return (
-        <Tabs>
+        <Tabs mb="20px">
             <TabList>
                 <Tab>
                     <NavLink to="/">
