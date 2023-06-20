@@ -24,6 +24,23 @@ import {
 } from "./Pagination";
 
 function StaffTable() {
+    const pages = Math.ceil(workersData.length / 10);
+
+    const isPagesMoreThanOne = pages > 1 ? true : false;
+
+    let paginationButtons = [];
+
+    let workersOnPage = isPagesMoreThanOne && workersData.slice(0, 10);
+
+    for (let number = 1; number <= pages; number++) {
+        paginationButtons.push(
+            <PaginationButton
+                key={number}
+                page={number}
+            />       
+        );
+    }
+
     return (
         <TableContainer backgroundColor="#fff" borderRadius="32px">
             <Table variant="simple">
@@ -37,8 +54,8 @@ function StaffTable() {
                     </Tr>
                 </Thead>
                 <Tbody>
-                    {workersData.map((worker) => (
-                        <Tr>
+                    {workersOnPage.map((worker) => (
+                        <Tr key={worker.id}>
                             <Td>{worker.number}</Td>
                             <Td>{worker.id}</Td>
                             <Td>{worker.tel}</Td>
@@ -54,27 +71,29 @@ function StaffTable() {
                     ))}
                 </Tbody>
             </Table>
-            <Flex justifyContent="space-between" marginBlock="20px" marginInline="20px">
+            <Flex
+                justifyContent="space-between"
+                marginBlock="20px"
+                marginInline="20px"
+            >
                 <Box>показано 21 - 30 из 88 результатов </Box>
-                
-                <PaginationConatiner>
-                    <PaginationPrev />
-                    <PaginationButton page="1" />
-                    <PaginationButton page="2" />
-                    <PaginationButton page="3" />
-                    <PaginationNext />
-                </PaginationConatiner>
-                
-                
-                    <Flex gap="10px" alignItems="center">
-                        <Text>отображать на странице</Text>
-                        <Select>
-                            <option value="option1">10</option>
-                            <option value="option2">15</option>
-                            <option value="option3">20</option>
-                        </Select>
-                    </Flex>
-                
+
+                {isPagesMoreThanOne && (
+                    <PaginationConatiner>
+                        <PaginationPrev />
+                            {paginationButtons}
+                        <PaginationNext />
+                    </PaginationConatiner>
+                )}
+
+                <Flex gap="10px" alignItems="center">
+                    <Text>отображать на странице</Text>
+                    <Select>
+                        <option value="option1">10</option>
+                        <option value="option2">15</option>
+                        <option value="option3">20</option>
+                    </Select>
+                </Flex>
             </Flex>
         </TableContainer>
     );
