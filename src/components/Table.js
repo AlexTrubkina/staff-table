@@ -8,46 +8,59 @@ import {
     Tr,
     Th,
     Td,
-    TableCaption,
     TableContainer,
+    Flex,
+    Text
 } from "@chakra-ui/react";
 
-function Table() {
+import { Select } from "@chakra-ui/react";
+
+import { tableHeadings, workersData } from "../data/tableData";
+
+function StaffTable() {
     return (
-        <TableContainer>
+        <TableContainer backgroundColor="#fff" borderRadius="32px">
             <Table variant="simple">
-                <TableCaption>
-                    Imperial to metric conversion factors
-                </TableCaption>
                 <Thead>
                     <Tr>
-                        <Th>To convert</Th>
-                        <Th>into</Th>
-                        <Th isNumeric>multiply by</Th>
+                        {tableHeadings.map((heading) => (
+                            <Th color="#54D3C2" key={heading} fontWeight="700">
+                                {heading}
+                            </Th>
+                        ))}
                     </Tr>
                 </Thead>
                 <Tbody>
-                    <Tr>
-                        <Td>inches</Td>
-                        <Td>millimetres (mm)</Td>
-                        <Td isNumeric>25.4</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>feet</Td>
-                        <Td>centimetres (cm)</Td>
-                        <Td isNumeric>30.48</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>yards</Td>
-                        <Td>metres (m)</Td>
-                        <Td isNumeric>0.91444</Td>
-                    </Tr>
+                    {workersData.map((worker) => (
+                        <Tr>
+                            <Td>{worker.number}</Td>
+                            <Td>{worker.id}</Td>
+                            <Td>{worker.tel}</Td>
+                            <Td>{worker.sex}</Td>
+                            <Td>{worker.birthday}</Td>
+                            <Td>{worker.metro}</Td>
+                            <Td>{worker.address}</Td>
+                            <Td>{worker.bank}</Td>
+                            <Td>{worker.card}</Td>
+                            <Td>{worker.citizenship}</Td>
+                            <Td>{worker.passport}</Td>
+                        </Tr>
+                    ))}
                 </Tbody>
                 <Tfoot>
                     <Tr>
-                        <Th>To convert</Th>
-                        <Th>into</Th>
-                        <Th isNumeric>multiply by</Th>
+                        <Th>показано 21 - 30 из 88 результатов </Th>
+                        <Th>пагинация</Th>
+                        <Th>
+                            <Flex gap="10px" alignItems="center">
+                                <Text>отображать на странице</Text>
+                                <Select>
+                                    <option value="option1">10</option>
+                                    <option value="option2">15</option>
+                                    <option value="option3">20</option>
+                                </Select>
+                            </Flex>
+                        </Th>
                     </Tr>
                 </Tfoot>
             </Table>
@@ -55,4 +68,4 @@ function Table() {
     );
 }
 
-export default Table;
+export default StaffTable;
