@@ -4,18 +4,24 @@ import {
     Table,
     Thead,
     Tbody,
-    Tfoot,
+    Box,
     Tr,
     Th,
     Td,
     TableContainer,
     Flex,
-    Text
+    Text,
 } from "@chakra-ui/react";
 
 import { Select } from "@chakra-ui/react";
 
 import { tableHeadings, workersData } from "../data/tableData";
+import {
+    PaginationButton,
+    PaginationConatiner,
+    PaginationNext,
+    PaginationPrev,
+} from "./Pagination";
 
 function StaffTable() {
     return (
@@ -47,23 +53,29 @@ function StaffTable() {
                         </Tr>
                     ))}
                 </Tbody>
-                <Tfoot>
-                    <Tr>
-                        <Th>показано 21 - 30 из 88 результатов </Th>
-                        <Th>пагинация</Th>
-                        <Th>
-                            <Flex gap="10px" alignItems="center">
-                                <Text>отображать на странице</Text>
-                                <Select>
-                                    <option value="option1">10</option>
-                                    <option value="option2">15</option>
-                                    <option value="option3">20</option>
-                                </Select>
-                            </Flex>
-                        </Th>
-                    </Tr>
-                </Tfoot>
             </Table>
+            <Flex justifyContent="space-between" marginBlock="20px" marginInline="20px">
+                <Box>показано 21 - 30 из 88 результатов </Box>
+                
+                <PaginationConatiner>
+                    <PaginationPrev />
+                    <PaginationButton page="1" />
+                    <PaginationButton page="2" />
+                    <PaginationButton page="3" />
+                    <PaginationNext />
+                </PaginationConatiner>
+                
+                
+                    <Flex gap="10px" alignItems="center">
+                        <Text>отображать на странице</Text>
+                        <Select>
+                            <option value="option1">10</option>
+                            <option value="option2">15</option>
+                            <option value="option3">20</option>
+                        </Select>
+                    </Flex>
+                
+            </Flex>
         </TableContainer>
     );
 }
