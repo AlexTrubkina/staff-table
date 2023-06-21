@@ -12,9 +12,9 @@ function SearchTab () {
                     <Text>
                         Контактов
                     </Text>
-                    <Input />
+                    <Input borderRadius="24px" backgroundColor="#F8F8F8" placeholder="Поиск"/>
                 </Flex>
-                <Button variant="outline">
+                <Button variant="outline" borderRadius="24px" borderColor="#54D3C2" color="#54D3C2">
                     Режим редактирования
                 </Button>
             </Flex>
