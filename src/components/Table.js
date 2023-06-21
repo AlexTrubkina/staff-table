@@ -11,6 +11,7 @@ import {
     TableContainer,
     Flex,
     Text,
+    Input,
 } from "@chakra-ui/react";
 
 import { Select } from "@chakra-ui/react";
@@ -23,7 +24,7 @@ import {
     PaginationPrev,
 } from "./Pagination";
 
-function StaffTable() {
+function StaffTable({ editMode }) {
     const pages = Math.ceil(workersData.length / 10);
 
     const isPagesMoreThanOne = pages > 1 ? true : false;
@@ -33,12 +34,7 @@ function StaffTable() {
     let workersOnPage = isPagesMoreThanOne && workersData.slice(0, 10);
 
     for (let number = 1; number <= pages; number++) {
-        paginationButtons.push(
-            <PaginationButton
-                key={number}
-                page={number}
-            />       
-        );
+        paginationButtons.push(<PaginationButton key={number} page={number} />);
     }
 
     return (
@@ -54,22 +50,63 @@ function StaffTable() {
                     </Tr>
                 </Thead>
                 <Tbody>
-                    {workersOnPage.map((worker) => (
-                        <Tr key={worker.id}>
-                            <Td>{worker.number}</Td>
-                            <Td>{worker.name}</Td>
-                            <Td>{worker.id}</Td>
-                            <Td>{worker.tel}</Td>
-                            <Td>{worker.sex}</Td>
-                            <Td>{worker.birthday}</Td>
-                            <Td>{worker.metro}</Td>
-                            <Td>{worker.address}</Td>
-                            <Td>{worker.bank}</Td>
-                            <Td>{worker.card}</Td>
-                            <Td>{worker.citizenship}</Td>
-                            <Td>{worker.passport}</Td>
-                        </Tr>
-                    ))}
+                    {editMode
+                        ? workersOnPage.map((worker) => (
+                              <Tr key={worker.id}>
+                                  <Td>
+                                      {worker.number}
+                                  </Td>
+                                  <Td>
+                                      <Input value={worker.name} />
+                                  </Td>
+                                  <Td>
+                                      <Input value={worker.id} />
+                                  </Td>
+                                  <Td>
+                                      <Input value={worker.tel} />
+                                  </Td>
+                                  <Td>
+                                      <Input value={worker.sex} />
+                                  </Td>
+                                  <Td>
+                                      <Input value={worker.birthday} />
+                                  </Td>
+                                  <Td>
+                                      <Input value={worker.metro} />
+                                  </Td>
+                                  <Td>
+                                      <Input value={worker.address} />
+                                  </Td>
+                                  <Td>
+                                      <Input value={worker.bank} />
+                                  </Td>
+                                  <Td>
+                                      <Input value={worker.card} />
+                                  </Td>
+                                  <Td>
+                                      <Input value={worker.citizenship} />
+                                  </Td>
+                                  <Td>
+                                      <Input value={worker.passport} />
+                                  </Td>
+                              </Tr>
+                          ))
+                        : workersOnPage.map((worker) => (
+                              <Tr key={worker.id}>
+                                  <Td>{worker.number}</Td>
+                                  <Td>{worker.name}</Td>
+                                  <Td>{worker.id}</Td>
+                                  <Td>{worker.tel}</Td>
+                                  <Td>{worker.sex}</Td>
+                                  <Td>{worker.birthday}</Td>
+                                  <Td>{worker.metro}</Td>
+                                  <Td>{worker.address}</Td>
+                                  <Td>{worker.bank}</Td>
+                                  <Td>{worker.card}</Td>
+                                  <Td>{worker.citizenship}</Td>
+                                  <Td>{worker.passport}</Td>
+                              </Tr>
+                          ))}
                 </Tbody>
             </Table>
             <Flex
@@ -82,7 +119,7 @@ function StaffTable() {
                 {isPagesMoreThanOne && (
                     <PaginationConatiner>
                         <PaginationPrev />
-                            {paginationButtons}
+                        {paginationButtons}
                         <PaginationNext />
                     </PaginationConatiner>
                 )}

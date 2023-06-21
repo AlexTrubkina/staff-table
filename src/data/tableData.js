@@ -115,7 +115,7 @@ export const workersData = [
     {
         number: 8, 
         name: "Морозов Павел",
-        id: 49,
+        id: 155,
         tel: 89325673456,
         sex: "Мужской",
         birthday: "09.12.2002",
