@@ -27,7 +27,7 @@ import {
 function StaffTable({ editMode }) {
     const pages = Math.ceil(workersData.length / 10);
 
-    const isPagesMoreThanOne = pages > 1 ? true : false;
+    const isPagesMoreThanOne = pages > 1;
 
     let paginationButtons = [];
 

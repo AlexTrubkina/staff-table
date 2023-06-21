@@ -8,7 +8,7 @@ function HomeScreen() {
 
     const [editMode, setEditMode] = useState(false);
 
-    const handleEditMode = () => editMode ? setEditMode(false) : setEditMode(true);
+    const handleEditMode = () => setEditMode(!editMode);
 
     return (
         <LayoutPage>
