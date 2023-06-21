@@ -57,6 +57,7 @@ function StaffTable() {
                     {workersOnPage.map((worker) => (
                         <Tr key={worker.id}>
                             <Td>{worker.number}</Td>
+                            <Td>{worker.name}</Td>
                             <Td>{worker.id}</Td>
                             <Td>{worker.tel}</Td>
                             <Td>{worker.sex}</Td>
